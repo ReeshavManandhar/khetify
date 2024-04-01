@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" conetent="with=device-width, initial-scale=1.0">
+        <title>
+            KHETIFY
+        </title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    </head>
+    <body>
+        <section class="sub-header">
+            <nav>
+                <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='image/logo.png') }}"></a>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">HOME</a></li>
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('crop_predict')}}">CROP PREDICTION</a></li>
+                        {% else %}
+                           <li><a href="{{ url_for('login') }}">CROP PREDICTION</a></li>
+                        {% endif %}
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('fertilizer_recommendation')}}">FERTILIZER RECOMMENDATION</a></li>
+                        {% else %}
+                           <li><a href="{{ url_for('login') }}">FERTILIZER RECOMMENDATION</a></li>
+                        {% endif %}
+
+                        <li><a href="{{ url_for('about') }}">ABOUT</a></li>
+                         {% if current_user.is_authenticated %}
+                                <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
+                         {% else %}
+                               <li><a href="{{ url_for('login') }}">LOGIN/REGISTER</a></li>
+                         {% endif %}
+                    </ul>
+                </div>
+            </nav>
+</section>
+
+<section class="about-us">
+    <div class="row">
+        <div class="about-col">
+            <h1>FERTILIZER RECOMMENDATION</h1>
+            <p>Fertilizer recommendation systems use crop and soil data to propose the right amount of nutrients for a given field. These devices assist farmers in applying the appropriate type and quantity of fertilizers by evaluating crop nutrient requirements and soil composition. Applying fertilizer precisely reduces extra nitrogen runoff, which minimizes environmental effect while optimizing crop productivity.</p>
+            <h1>STEPS TO USE FERTILIZER SUGGESTION</h1>
+                <ul>
+                    <li>1. Navigate to the fertilizer suggestion page.</li>
+                    <li>2. Input the nitrogen (N), phosphorus (P), and potassium (K) levels in the soil for the selected field.</li>
+                    <li>3. Select the crop's name for which you are seeking fertilizer recommendations.</li>
+                    <li>4. Press the "Generate Suggestions" button to initiate the fertilizer suggestion tool.</li>
+                    <li>5. Review the recommended fertilizer type and quantity provided by the system based on the input data.</li>
+                </ul>
+
+            <br>
+            <a href="{{ url_for('fertilizer_recommendation') }}" class="hero-btn red-btn">Exploer now</a>
+        </div> 
+        <div class="about-col">
+            <img src="{{ url_for('static', filename='image/fertilizing.jpg') }}" >
+        </div> 
+    </div>
+
+
+</section>
+
+
+
+
+
+<section class="footer">
+    <a href="{{ url_for('about') }}"><h4>About us</h4></a>
+    <p>DISCLAMER::
+        <span class="glowing-text">This is a final year college project conducted for educational purposes only.<br>The dataset used in this project may be questionable and may not be representative of the real world.
+      <br>Therefore, the predictions and any information provided in this project should be considered inaccurate and should not be relied upon for any real-world decisions.</span>
+    </p>
+    <div class="icons">
+        <i class="fa fa-facebook" ></i>
+        <i class="fa fa-twitter" ></i>
+        <i class="fa fa-instagram" ></i>
+        <i class="fa fa-linkedin" ></i>
+
+    </div>
+    <p>Made by <i class="fa fa-heart-o" ></i> CSIT-7</p>
+
+
+    <button id="dark-mode-toggle">Dark Mode</button>
+    <button id="scroll-to-top-button">
+        <i class="fa fa-arrow-up "  aria-hidden="true" alt="Scroll to Top" hidden> </i></button>
+
+    <script src="{{ url_for('static', filename='scripts/scrit.js') }}"></script>
+
+</section>
+
+    </body>
+</html>

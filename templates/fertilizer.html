@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>KHETIFY</title>
+        <style>
+        .sub-header {
+            min-height: 100vh;
+            width: 100%;
+            background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)),
+                              url("{{ url_for('static', filename='image/post_7.JPG') }}");
+            background-position: center;
+            background-size: cover;
+            text-align: center;
+            color: #fff;
+        }
+        </style>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/ferti.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <section class="sub-header">
+            <nav>
+                <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='image/logo.png') }}"></a>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">HOME</a></li>
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('crop_predict')}}">CROP PREDICTION</a></li>
+                        {% else %}
+                           <li><a href="{{ url_for('login') }}">CROP PREDICTION</a></li>
+                        {% endif %}
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('fertilizer_recommendation')}}">FERTILIZER RECOMMENDATION</a></li>
+                        {% else %}
+                           <li><a href="{{ url_for('login') }}">FERTILIZER RECOMMENDATION</a></li>
+                        {% endif %}
+
+                        <li><a href="{{ url_for('about') }}">ABOUT</a></li>
+                         {% if current_user.is_authenticated %}
+                                <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
+                         {% else %}
+                               <li><a href="{{ url_for('login') }}">LOGIN/REGISTER</a></li>
+                         {% endif %}
+                    </ul>
+                </div>
+            </nav>
+    <div class="text-box">
+        <h1>FERTILIZER RECOMMENDATION</h1>
+        
+    </div><br>
+            <div class="form-container">
+                <form method="POST" action="{{ url_for('fertilizer_recommend') }}">
+                    <div class="form-group">
+                        <label for="Nitrogen"><b>Nitrogen(N)</b></label>
+                        <input type="number" class="form-control" id="Nitrogen" name="nitrogen" placeholder="Enter the value" required>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="Phosphorous"><b>Phosphorous(P)</b></label>
+                        <input type="number" class="form-control" id="Phosphorous" name="phosphorous" placeholder="Enter the value" required>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="Pottasium"><b>Potassium(K)</b></label>
+                        <input type="number" class="form-control" id="Potassium" name="potassium" placeholder="Enter the value " required>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="crop"><b>Crop you want to grow</b></label>
+                        <select name="cropname" class="form-control" id="crop" placeholder="Select a crop" required>
+                            <option selected>Select crop</option>
+                            <option>rice</option>
+                            <option>maize</option>
+                            <option>chickpea</option>
+                            <option>kidneybeans</option>
+                            <option>pigeonpeas</option>
+                            <option>mothbeans</option>
+                            <option>mungbean</option>
+                            <option>blackgram</option>
+                            <option>lentil</option>
+                            <option>pomegranate</option>
+                            <option>banana</option>
+                            <option>mango</option>
+                            <option>grapes</option>
+                            <option>watermelon</option>
+                            <option>muskmelon</option>
+                            <option>apple</option>
+                            <option>orange</option>
+                            <option>papaya</option>
+                            <option>coconut</option>
+                            <option>cotton</option>
+                            <option>jute</option>
+                            <option>coffee</option>
+                        </select>
+                    </div><br>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-info">Predict</button>
+                    </div>
+                </form>
+            </div>
+</section>
+
+
+
+
+<section class="footer">
+    <a href="{{ url_for('about') }}"><h4>About us</h4></a>
+    <p>DISCLAMER::
+        <span class="glowing-text"> This is a final year college project conducted for educational purposes only.<br>The dataset used in this project may be questionable and may not be representative of the real world. 
+            <br>Therefore, the predictions and any information provided in this project should be considered inaccurate and should not be relied upon for any real-world decisions.</span>
+    </p>
+    <div class="icons">
+        <i class="fa fa-facebook" ></i>
+        <i class="fa fa-twitter" ></i>
+        <i class="fa fa-instagram" ></i>
+        <i class="fa fa-linkedin" ></i>
+
+    </div>
+    <p>Made by <i class="fa fa-heart-o" ></i>  KHETIFY-TEAM</p>
+    <button id="dark-mode-toggle">Dark Mode</button>
+    <script src="{{ url_for('static', filename='scripts/scrit.js') }}"></script>
+
+</section>
+
+
+
+    </body>
+</html>

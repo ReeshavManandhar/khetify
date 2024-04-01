@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" conetent="with=device-width, initial-scale=1.0">
+        <title>
+            KHETIFY
+        </title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ url_for('static', filename='css/animate.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ url_for('static', filename='css/javascript-plugins-bundle.css') }}" rel="stylesheet">
+
+    </head>
+    <body>
+        <section class="sub-header">
+            <nav>
+                <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='image/logo.png') }}"></a>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">HOME</a></li>
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('crop_predict')}}">CROP PREDICTION</a></li>
+                        {% else %}
+                           <li><a href="{{ url_for('login') }}">CROP PREDICTION</a></li>
+                        {% endif %}
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('fertilizer_recommendation')}}">FERTILIZER RECOMMENDATION</a></li>
+                        {% else %}
+                           <li><a href="{{ url_for('login') }}">FERTILIZER RECOMMENDATION</a></li>
+                        {% endif %}
+
+                        <li><a href="{{ url_for('about') }}">ABOUT</a></li>
+                         {% if current_user.is_authenticated %}
+                                <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
+                         {% else %}
+                               <li><a href="{{ url_for('login') }}">LOGIN/REGISTER</a></li>
+                         {% endif %}
+                    </ul>
+                </div>
+            </nav>
+   
+            <h1>About Us</h1>
+</section>
+
+<section class="about-us">
+    <div class="row">
+        <div class="about-col">
+            <h1>About KHETIFY</h1>
+            <p>Khetify stands as an advanced agricultural platform, delivering farmers valuable data-driven insights to optimize crop management. Utilizing state-of-the-art technology, 
+                Khetify enhances agricultural productivity by offering cutting-edge functionalities like plant disease identification, fertilizer recommendations, and crop yield predictions. 
+                <br><br>
+                
+            Khetify is an innovative agricultural platform that provides farmers with data-driven insights to revolutionize crop management. Khetify provides a number of cutting-edge features, including plant disease diagnosis, fertilizer recommendations, and crop output forecast, by utilizing cutting-edge technologies.
+             By seamlessly integrating data on weather patterns, soil qualities, and historical data, the technology provides farmers with precise projections. They are ultimately able to make more informed decisions about critical matters such as disease control, planting, and fertilizer, which increases agricultural productivity.
+<br><br>
+The platform provides farmers with accurate forecasts by seamlessly incorporating data on weather patterns, soil attributes, and historical information. This enables farmers to 
+                make informed decisions on planting, fertilizing, and disease prevention. 
+                Khetify's user-friendly interface and sophisticated analytics promote sustainable farming practices, ensuring increased yields and healthier crops for a resilient future in agriculture.
+            <br><br>
+            Khetify offers a user-friendly UI that makes navigating easy, in addition to being technologically savvy. Precise projections and support for sustainable farming practices are provided by the platform's advanced analytics. Khetify offers insights that guarantee greater yields, giving farmers a competitive edge.</p>
+            <a href="{{ url_for('home') }}" class="hero-btn red-btn">Explore now</a>
+        </div> 
+        <div class="about-col">
+            <img src="{{ url_for('static', filename='image/harvest.jpg') }}" >
+        </div> 
+    </div>
+
+
+</section>
+
+
+<section class="footer">
+    <a href="{{ url_for('about') }}"><h4>About us</h4></a>
+    <p>DISCLAMER::
+        <span class="glowing-text">This is a final year college project conducted for educational purposes only.<br>The dataset used in this project may be questionable and may not be representative of the real world.
+      <br>Therefore, the predictions and any information provided in this project should be considered inaccurate and should not be relied upon for any real-world decisions.</span>
+    </p>
+    <div class="icons">
+        <i class="fa fa-facebook" ></i>
+        <i class="fa fa-twitter" ></i>
+        <i class="fa fa-instagram" ></i>
+        <i class="fa fa-linkedin" ></i>
+
+    </div>
+    <p>Made by <i class="fa fa-heart-o" ></i> CSIT-7</p>
+
+
+    <button id="dark-mode-toggle">Dark Mode</button>
+    <button id="scroll-to-top-button">
+        <i class="fa fa-arrow-up "  aria-hidden="true" alt="Scroll to Top" hidden> </i></button>
+
+    <script src="{{ url_for('static', filename='scripts/scrit.js') }}"></script>
+
+</section>
+
+    </body>
+</html>
+
+
+
+

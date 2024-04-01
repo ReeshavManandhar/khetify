@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <section class="background-container">
+            <nav>
+                <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='image/logo.png') }}"></a>
+            </nav>
+    <div class="topp">
+        <div class="text-box">
+            <h2 >Login</h2> <br>
+            <div class="form-box login">
+                <form method="post" action="{{ url_for('login') }}">
+                    <div class="input-box">
+                        <span class="icon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                        <input type="text" name="username" required>
+                        <label for="username">Username</label>
+                    </div>
+                    <br>
+                    <div class="input-box">
+                        <span class="icon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                        <input type="password" name="password" required>
+                        <label for="password">Password</label>
+                    </div>
+                    <button class="hero-btn" style="font-size: 1em; width: 100%;" type="submit">Login</button>
+                    <div style="font-size: .5em;" class="login-register">
+                        <p>Don't have an account?<a href="{{ url_for('register') }}" class="register-link">Register!</a></p>
+                        <p>Are you ADMIN><a href="{{ url_for('admin_login') }}" class="register-link">ADMIN LOGIN</a></p>
+                    </div>
+                    <br>
+
+                </form>
+                {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        <ul class="flashes">
+                            {% for message in messages %}
+                                <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
+
+            </div>
+        </div>
+    </div>
+
+
+     </section>
+
+</body>
+</html>

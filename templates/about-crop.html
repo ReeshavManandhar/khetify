@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" conetent="with=device-width, initial-scale=1.0">
+        <title>
+            KHETIFY
+        </title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+    <body>
+        <section class="sub-header">
+            <nav>
+                <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='image/logo.png') }}"></a>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">HOME</a></li>
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('crop_predict')}}">CROP PREDICTION</a></li>
+                        {% else %}
+                           <li><a href="{{ url_for('login') }}">CROP PREDICTION</a></li>
+                        {% endif %}
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('fertilizer_recommendation')}}">FERTILIZER RECOMMENDATION</a></li>
+                        {% else %}
+                           <li><a href="{{ url_for('login') }}">FERTILIZER RECOMMENDATION</a></li>
+                        {% endif %}
+                        <li><a href="{{ url_for('about') }}">ABOUT</a></li>
+                         {% if current_user.is_authenticated %}
+                                <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
+                         {% else %}
+                               <li><a href="{{ url_for('login') }}">LOGIN/REGISTER</a></li>
+                         {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </section>
+
+        <section class="about-us">
+            <div class="row">
+            <div class="about-col">
+                <h1>CROP YEILD PREDICTION</h1>
+                <p>Crop yield prediction is the process of estimating the possible harvest of a given crop by utilizing cutting-edge technologies including machine learning algorithms, weather data, and satellite photography.
+                    Farmers and agricultural specialists can make well-informed judgments about planting schedules, resource allocation, and risk management by examining past data and present environmental circumstances.
+                    Precise forecasts of production enable farmers to enhance their methods, better manage resources, and adjust to shifting weather patterns.</p>
+
+                 <h1>STEP TO USE CROP YEILD PREDICTION</h1>
+                    <ul>
+                        <li>1. Navigate to the crop yield prediction page.</li>
+                        <li>2. Choose the district where you plan to grow the crop.</li>
+                        <li>3. Select the specific crop you intend to cultivate.</li>
+                        <li>4. Input the historical or current production data (in MT) and the cultivated area (in hectares) for the chosen crop.</li>
+                        <li>5. Enter the average or expected rainfall (in mm) for the district during the crop's growing season.</li>
+                        <li>6. Press the "Predict" button to initiate the prediction tool.</li>
+                        <li>7. Review the predicted crop yield provided by the system.</li>
+                    </ul>
+                 <br>
+                <a href="{{ url_for('crop_predict') }}" class="hero-btn red-btn">Explore now</a>
+             </div>
+            <div class="about-col">
+                <img src="{{ url_for('static', filename='image/bg.jpg') }}" >
+            </div>
+            </div>
+        </section>
+
+
+        <section class="footer">
+            <a href="{{ url_for('about') }}"><h4>About us</h4></a>
+            <p>DISCLAMER::
+                <span class="glowing-text">This is a final year college project conducted for educational purposes only.<br>The dataset used in this project may be questionable and may not be representative of the real world.
+              <br>Therefore, the predictions and any information provided in this project should be considered inaccurate and should not be relied upon for any real-world decisions.</span>
+            </p>
+            <div class="icons">
+                <i class="fa fa-facebook" ></i>
+                <i class="fa fa-twitter" ></i>
+                <i class="fa fa-instagram" ></i>
+                <i class="fa fa-linkedin" ></i>
+
+            </div>
+            <p>Made by <i class="fa fa-heart-o" ></i> CSIT-7</p>
+            <button id="dark-mode-toggle">Dark Mode</button>
+            <button id="scroll-to-top-button">
+                <i class="fa fa-arrow-up "  aria-hidden="true" alt="Scroll to Top" hidden> </i></button>
+            <script src="{{ url_for('static', filename='scripts/scrit.js') }}"></script>
+        </section>
+    </body>
+</html>

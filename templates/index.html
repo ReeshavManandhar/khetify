@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KHETIFY</title>
+    <style>
+        * {
+            scroll-behavior:smooth;
+        }
+
+        .text-box h1 {
+            font-family: 'poppins', sans-serif;
+            font-size: 190px;
+            color: transparent;
+            -webkit-text-stroke: 1px #fff;
+            background: url("{{ url_for('static', filename='image/back.png') }}");
+            -webkit-background-clip: text;
+            background-position: 0 0;
+            animation: back 20s linear infinite;
+        }
+
+        @keyframes back{
+            100%{
+            background-position: 2000px 0;}
+                }
+
+    </style>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/indexstyle.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+    <body>
+        <section class="header">
+            <nav>
+                <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='image/logo.png') }}"></a>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">HOME</a></li>
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('crop_predict')}}">CROP PREDICTION</a></li>
+                        {% else %}
+                           <li><a href="{{ url_for('login') }}">CROP PREDICTION</a></li>
+                        {% endif %}
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('fertilizer_recommendation')}}">FERTILIZER RECOMMENDATION</a></li>
+                        {% else %}
+                           <li><a href="{{ url_for('login') }}">FERTILIZER RECOMMENDATION</a></li>
+                        {% endif %}
+                        <li><a href="{{ url_for('about') }}">ABOUT</a></li>
+                         {% if current_user.is_authenticated %}
+                                <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
+                         {% else %}
+                               <li><a href="{{ url_for('login') }}">LOGIN/REGISTER</a></li>
+                         {% endif %}
+                    </ul>
+                </div>
+            </nav>
+    <div class="text-box">
+        <h1 > KHETIFY</h1>
+        
+        <p>WHERE SCIENCE MEETS THE NATURE</p>
+        
+        <a href="#main" class="hero-btn">Click to know more</a>
+    </div>
+
+        </section>
+
+        <section id="main" class="main">
+            <div class="row">
+                <div class="main-col">
+                    <h1 style="font-size: 30px; color: grey;">WELCOME TO </h1>
+                    <h1 style="font-size: 80px; color: #28b15d;">KHETIFY</h1>
+                    <p >"Khetify stands as an advanced agricultural platform, delivering farmers valuable data-driven insights to optimize crop management. Utilizing state-of-the-art technology, 
+                        Khetify enhances agricultural productivity by offering cutting-edge functionalities like plant disease identification, fertilizer recommendations, and crop yield predictions. 
+                        <br><br>
+                        The platform provides farmers with accurate forecasts by seamlessly incorporating data on weather patterns, soil attributes, and historical information. This enables farmers to 
+                        make informed decisions on planting, fertilizing, and disease prevention. 
+                        Khetify's user-friendly interface and sophisticated analytics promote sustainable farming practices, ensuring increased yields and healthier crops for a resilient future in agriculture."</p>
+                    <a href="{{ url_for('about') }}" class="hero-btn red-btn" style="font-weight: 600; font-size: 18px;">Explore now </a>
+                </div> 
+                <div class="main-col">
+                    <img src="{{ url_for('static', filename='image/Alfalfa-Sprouts-Growth-Timelapse.gif') }}" >
+                </div> 
+            </div>
+        
+        
+        </section>
+
+<section  class="feature">
+    <h1>FEATURE WE OFFER</h1>
+   
+
+    <div class="row">
+        <div class="feature-col">
+            <h3>CROP YIELD PREDICTION</h3>
+            <p>Crop yield prediction is the process of estimating the possible harvest of a given crop by utilizing cutting-edge technologies including machine learning algorithms, weather data, and satellite photography. 
+                Farmers and agricultural specialists can make well-informed judgments about planting schedules, resource allocation..................<span><a href="{{ url_for('about_crop') }}">see more</a></span></p>
+
+        </div>
+        <div class="feature-col">
+            <h3>FERTILIZER RECOMMENDATION</h3>
+            <p>Fertilizer recommendation systems use crop and soil data to propose the right amount of nutrients for a given field. 
+                These devices assist farmers in applying the appropriate type and quantity of fertilizers by evaluating crop nutrient requirements and soil composition.
+                 Applying fertilizer precisely reduces extra.................<span><a href="{{ url_for('about_fer') }}">see more</a></span></p>
+        </div>
+    </div> 
+</section>
+
+<section class="featuresss">
+    <h1>OUR FEATURE</h1>
+   
+    <div class="row">
+        <div class="feat-col">
+            <img src="{{ url_for('static', filename='image/coppp1.JPG') }}">
+            <div class="layer">
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('crop_predict')}}"><h3>CROP YIELD PREDICTION</h3></a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}"><h3>CROP YIELD PREDICTION</h3></a></li>
+                {% endif %}
+            </div>
+        </div>
+        <div class="feat-col">
+            <img src="{{ url_for('static', filename='image/post_8.jpg') }}">
+            <div class="layer"> 
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('fertilizer_recommendation')}}"><h3>FERTILIZER PREDICTION</h3></a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}"><h3>FERTILIZER PREDICTION</h3></a></li>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+
+</section>
+
+<section class="facilities">
+    <h1>Our Member</h1>
+    
+    <div class="row">
+        <div class="fac-col">
+            <img src="{{ url_for('static', filename='image/ajng.png') }}">
+            <h3>Anuj Nanda Gorkhali</h3>
+        
+        </div>
+        <div class="fac-col">
+            <img src="{{ url_for('static', filename='image/viber_image_2023-11-23_10-20-41-204.jpg') }}">
+            <h3>Reeshav Manandhar</h3>
+            
+           
+        </div>
+        <div class="fac-col">
+            <img src="{{ url_for('static', filename='image/viber_image_2023-11-23_10-19-57-778.jpg') }}">
+            <h3>Sujan Man Sthapit</h3>
+           
+        </div>
+    </div>
+</section>
+
+
+<section id="con" class="contact">
+    
+    <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='image/logo.png') }}"></a>
+    <h>Contact us</h>
+    <div class="icon">
+        <p></p><i class="fa fa-phone-square icon" aria-hidden="true"></i>+977 9808795105</p>
+        <p></p><i class="fa fa-phone-square icon" aria-hidden="true"></i>+977 9808465884</p>
+        <p></p><i class="fa fa-envelope icon" aria-hidden="true"></i>info.khetify@gmail.com</p>
+    </div>
+
+</section>
+<section class="footer">
+    <a href="{{ url_for('about') }}"><h4>About us</h4></a>
+    <p>DISCLAMER::
+        <span class="glowing-text">This is a final year college project conducted for educational purposes only.<br>The dataset used in this project may be questionable and may not be representative of the real world. 
+      <br>Therefore, the predictions and any information provided in this project should be considered inaccurate and should not be relied upon for any real-world decisions.</span>
+    </p>
+    <div class="icons">
+        <i class="fa fa-facebook" ></i>
+        <i class="fa fa-twitter" ></i>
+        <i class="fa fa-instagram" ></i>
+        <i class="fa fa-linkedin" ></i>
+
+    </div>
+    <p>Made by <i class="fa fa-heart-o" ></i> KHETIFY-TEAM</p>
+
+
+    <button id="dark-mode-toggle">Dark Mode</button>
+    <button id="scroll-to-top-button">
+        <i class="fa fa-arrow-up "  aria-hidden="true" alt="Scroll to Top" hidden> </i></button>
+        
+    <script src="{{ url_for('static', filename='scripts/scrit.js') }}"></script>
+    
+</section>
+
+    </body>
+</html>

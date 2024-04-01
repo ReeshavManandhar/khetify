@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>KHETIFY</title>
+        <style>
+        .sub-header {
+            min-height: 100vh;
+            width: 100%;
+            background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)),
+                              url("{{ url_for('static', filename='image/coppp.JPG') }}");
+            background-position: center;
+            background-size: cover;
+            text-align: center;
+            color: #fff;
+        }
+        </style>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/cropp.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <section class="sub-header">
+            <nav>
+                <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='image/logo.png') }}"></a>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">HOME</a></li>
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('crop_predict')}}">CROP PREDICTION</a></li>
+                        {% else %}
+                           <li><a href="{{ url_for('login') }}">CROP PREDICTION</a></li>
+                        {% endif %}
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('fertilizer_recommendation')}}">FERTILIZER RECOMMENDATION</a></li>
+                        {% else %}
+                           <li><a href="{{ url_for('login') }}">FERTILIZER RECOMMENDATION</a></li>
+                        {% endif %}
+                        <li><a href="{{ url_for('about') }}">ABOUT</a></li>
+                         {% if current_user.is_authenticated %}
+                                <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
+                         {% else %}
+                               <li><a href="{{ url_for('login') }}">LOGIN/REGISTER</a></li>
+                         {% endif %}
+                    </ul>
+                </div>
+            </nav>
+    <div class="text-box">
+        <h1>CROP YIELD PREDICTION </h1>
+
+    </div><br>
+
+    <div class="form-container">
+        <form method="POST" action="{{ url_for('crop_prediction') }}">
+            <div class="form-group">
+                <label for="District"><b>District</b></label>
+                <select name="District" class="form-control" id="District" placeholder="Select a District" required>
+                    <option selected>Select District</option>
+                    <option value="Taplejung">Taplejung</option>
+                    <option value="Panchthar">Panchthar</option>
+                    <option value="Illam">Illam</option>
+                    <option value="Jhapa">Jhapa</option>
+                    <option value="Sankhuwasabha">Sankhuwasabha</option>
+                    <option value="Bhojpur">Bhojpur</option>
+                    <option value="Dhankuta">Dhankuta</option>
+                    <option value="Tehrathum">Tehrathum</option>
+                    <option value="Morang">Morang</option>
+                    <option value="Sunsari">Sunsari</option>
+                    <option value="Solukhumbu">Solukhumbu</option>
+                    <option value="Okhaldhunga">Okhaldhunga</option>
+                    <option value="Khotang">Khotang</option>
+                    <option value="Udayapur">Udayapur</option>
+                    <option value="Saptari">Saptari</option>
+                    <option value="Siraha">Siraha</option>
+                    <option value="Dolakha">Dolakha</option>
+                    <option value="Ramechhap">Ramechhap</option>
+                    <option value="Sindhuli">Sindhuli</option>
+                    <option value="Dhanusa">Dhanusa</option>
+                    <option value="Mahottari">Mahottari</option>
+                    <option value="Sarlahi">Sarlahi</option>
+                    <option value="Sindhupalchok">Sindhupalchok</option>
+                    <option value="Kavre">Kavre</option>
+                    <option value="Bhaktapur">Bhaktapur</option>
+                    <option value="Lalitpur">Lalitpur</option>
+                    <option value="Kathmandu">Kathmandu</option>
+                    <option value="Rasuwa">Rasuwa</option>
+                    <option value="Nuwakot">Nuwakot</option>
+                    <option value="Dhading">Dhading</option>
+                    <option value="Rautahat">Rautahat</option>
+                    <option value="Bara">Bara</option>
+                    <option value="Parsa">Parsa</option>
+                    <option value="Makwanpur">Makwanpur</option>
+                    <option value="Chitwan">Chitwan</option>
+                    <option value="Gorkha">Gorkha</option>
+                    <option value="Lamjung">Lamjung</option>
+                    <option value="Tanahu">Tanahu</option>
+                    <option value="Manang">Manang</option>
+                    <option value="Kaski">Kaski</option>
+                    <option value="Syangja">Syangja</option>
+                    <option value="Nawalparasi">Nawalparasi</option>
+                    <option value="Palpa">Palpa</option>
+                    <option value="Rupandehi">Rupandehi</option>
+                    <option value="Gulmi">Gulmi</option>
+                    <option value="Arghakhanchi">Arghakhanchi</option>
+                    <option value="Kapilbastu">Kapilbastu</option>
+                    <option value="Mustang">Mustang</option>
+                    <option value="Myagdi">Myagdi</option>
+                    <option value="Parbat">Parbat</option>
+                    <option value="Baglung">Baglung</option>
+                    <option value="Dolpa">Dolpa</option>
+                    <option value="Mugu">Mugu</option>
+                    <option value="Jumla">Jumla</option>
+                    <option value="Kalikot">Kalikot</option>
+                    <option value="Humla">Humla</option>
+                    <option value="Rukum">Rukum</option>
+                    <option value="Rolpa">Rolpa</option>
+                    <option value="Pyuthan">Pyuthan</option>
+                    <option value="Dang">Dang</option>
+                    <option value="Salyan">Salyan</option>
+                    <option value="Jajarkot">Jajarkot</option>
+                    <option value="Dailekh">Dailekh</option>
+                    <option value="Surkhet">Surkhet</option>
+                    <option value="Banke">Banke</option>
+                    <option value="Bardiya">Bardiya</option>
+                    <option value="Bajura">Bajura</option>
+                    <option value="Achham">Achham</option>
+                    <option value="Bajhang">Bajhang</option>
+                    <option value="Doti">Doti</option>
+                    <option value="Kailali">Kailali</option>
+                    <option value="Darchula">Darchula</option>
+                    <option value="Baitadi">Baitadi</option>
+                    <option value="Dadeldhura">Dadeldhura</option>
+                    <option value="Kanchanpur">Kanchanpur</option>
+                    <br>
+                </select><br>
+            </div>
+             <script>
+                const options = document.getElementById('District').options;
+                const sortedOptions = Array.from(options).sort((a, b) => a.text.localeCompare(b.text));
+                document.getElementById('District').innerHTML = '';
+                sortedOptions.forEach(option => document.getElementById('District').appendChild(option));
+            </script><br>
+            <div class="form-group">
+                <label for="crop"><b>Crop Name</b></label>
+                <select name="Cropname" class="form-control" id="crop" placeholder="Select a crop" required style="padding: 10px 42px;">
+                <option selected>Select crop</option>
+                <option value="Paddy">Paddy</option>
+                <option value="Wheat">Wheat</option>
+                <option value="Maize">Maize</option>
+                <option value="Millet">Millet</option>
+                <option value="Barley">Barley</option>
+                <option value="Buckwheat">Buckwheat</option>
+                </select>
+            </div><br>
+
+            <div class="form-group">
+                <label for="Production"><b>Production</b></label>
+                <input type="number" class="form-control" id="Production" name="Production" placeholder="Value in (mt)" required>
+            </div><br>
+            <div class="form-group">
+                <label for="Area"><b>Area</b></label>
+                <input type="number"  class="form-control" id="Area" name="Area" placeholder="Value in (ha)" required>
+            </div><br>
+            <div class="form-group">
+                <label for="Rainfall"><b>Rainfall (in mm)</b></label>
+                <input type="number" step="0.01" class="form-control" id="Rainfall" name="Rainfall" placeholder="Enter the value" required>
+            </div><br>
+            <div class="form-group">
+                <label for="Model"><b>Model for Prediction</b></label>
+                <select name="model" class="form-control" id="model"  required style="padding: 10px 42px;">
+                    <option selected>Select the model</option>
+                    <option value="All">All Models</option>
+                    <option value="XGBoost">XGBoost</option>
+                    <option value="Multiple Linear Regression">Multiple Regression</option>
+                    <option value="Lasso Regression">Lasso Regression</option>
+                </select>
+            </div><br>
+          <br>
+            <div class="d-flex justify-content-center">
+                <input type="submit" class="btn btn-info" value="Predict"></input>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+<section class="footer">
+    <a href="{{ url_for('about') }}"><h4>About us</h4></a>
+    <p>DISCLAMER::
+        <span class="glowing-text"> This is a final year college project conducted for educational purposes only.<br>The dataset used in this project may be questionable and may not be representative of the real world.
+            <br>Therefore, the predictions and any information provided in this project should be considered inaccurate and should not be relied upon for any real-world decisions.</span>
+    </p>
+    <div class="icons">
+        <i class="fa fa-facebook" ></i>
+        <i class="fa fa-twitter" ></i>
+        <i class="fa fa-instagram" ></i>
+        <i class="fa fa-linkedin" ></i>
+
+    </div>
+    <p>Made by <i class="fa fa-heart-o" ></i>  KHETIFY-TEAM</p>
+    <button id="dark-mode-toggle">Dark Mode</button>
+    <script src="{{ url_for('static', filename='scripts/scrit.js') }}"></script>
+
+</section>
+    </body>
+</html>
